@@ -1,7 +1,7 @@
 ﻿namespace bgTeam.DataAccess.Impl.Dapper
 {
-    using DapperExtensions;
     using global::Dapper;
+    using global::Dapper.Contrib.Extensions;
     using System.Data;
     using System.Threading.Tasks;
 
@@ -96,7 +96,6 @@
             }
         }
 
-        // TODO : необходимо реализовать async для connection.Delete
         public async Task<bool> DeleteAsync<T>(T entity, IDbConnection connection = null, IDbTransaction transaction = null)
             where T : class
         {
@@ -104,12 +103,12 @@
             {
                 using (connection = await _factory.CreateAsync())
                 {
-                    return connection.Delete(entity, transaction: transaction);
+                    return await connection.DeleteAsync(entity, transaction: transaction);
                 }
             }
             else
             {
-                return connection.Delete(entity, transaction: transaction);
+                return await connection.DeleteAsync(entity, transaction: transaction);
             }
         }
 
@@ -128,21 +127,6 @@
             }
         }
 
-        public async Task<int> ExecuteAsync(ISqlObject obj, IDbConnection connection = null, IDbTransaction transaction = null)
-        {
-            if (connection == null)
-            {
-                using (connection = await _factory.CreateAsync())
-                {
-                    return await connection.ExecuteAsync(obj.Sql, obj.QueryParams, transaction: transaction);
-                }
-            }
-            else
-            {
-                return await connection.ExecuteAsync(obj.Sql, obj.QueryParams, transaction: transaction);
-            }
-        }
-
         public int Execute(string sql, object param = null, IDbConnection connection = null, IDbTransaction transaction = null)
         {
             if (connection == null)
@@ -155,6 +139,21 @@
             else
             {
                 return connection.Execute(sql, param, transaction: transaction);
+            }
+        }
+
+        public async Task<int> ExecuteAsync(ISqlObject obj, IDbConnection connection = null, IDbTransaction transaction = null)
+        {
+            if (connection == null)
+            {
+                using (connection = await _factory.CreateAsync())
+                {
+                    return await connection.ExecuteAsync(obj.Sql, obj.QueryParams, transaction: transaction);
+                }
+            }
+            else
+            {
+                return await connection.ExecuteAsync(obj.Sql, obj.QueryParams, transaction: transaction);
             }
         }
 
