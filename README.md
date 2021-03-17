@@ -2,7 +2,7 @@
 
 [![Build status](https://ci.appveyor.com/api/projects/status/x34oo0dbvftcdcvv?svg=true)](https://ci.appveyor.com/project/bgTeamDev/bgteam-core) ![Coverage Status](https://murstv.github.io/coveradge-badge.svg "Coverage Status") [![License MIT](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
-[![Join the chat at https://discord.gg/qYmj4Z7jDA](https://img.shields.io/discord/355231098122272778?color=%237289DA&label=ITechLabs&logo=discord&logoColor=white)](https://discord.gg/qYmj4Z7jDA)
+[![Join the chat at https://discord.gg/qYmj4Z7jDA](https://murstv.github.io/discord-badge.svg)](https://discord.gg/qYmj4Z7jDA)
 
 
 ### Description
