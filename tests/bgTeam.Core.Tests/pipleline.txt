@@ -1,0 +1,8 @@
+dotnet tool install -g dotnet-reportgenerator-globaltool
+dotnet tool install --global coverlet.console
+coverlet ./tests/bgTeam.Core.Tests/bin/Release/netcoreapp3.1/bgTeam.Core.Tests.dll --target "dotnet" --targetargs "test ./tests/bgTeam.Core.Tests --no-build"
+
+dotnet test --collect:"XPlat Code Coverage"
+reportgenerator "-reports:.\TestResults\aa6516b7-d9d2-48c4-831a-f1f8184a7daf\coverage.cobertura.xml" "-targetdir:coveragereport" -reporttypes:Html
+#make badge from coverage template
+
